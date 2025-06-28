@@ -1,0 +1,30 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+<style>/*Optional: hide print button while printing */
+@media print{
+.no-print{
+display:none;
+}
+}
+</style>
+<button onclick="window.print()" class="no-
+print">print this page</button>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="container">
+    {% if request.session.username %}
+      <h2>Welcome, {{ request.session.username }}!</h2>
+      <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+      <h2>You are not logged in.</h2>
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+  </div>
+</body>
+</html>
